@@ -54,6 +54,10 @@ let winnerFound = false;
 
         if (a !== "" && a === b && b === c) {
 
+            cells[pattern[0]].classList.add("win");
+            cells[pattern[1]].classList.add("win");
+            cells[pattern[2]].classList.add("win");
+
             showPopup(a);
             winnerFound = true;
             gameOver=true;
@@ -87,7 +91,7 @@ cells.forEach((cell)=>{
         if(cell.textContent === "" && !gameOver){
 
             cell.textContent="X";
-
+            cell.classList.add("x");
             checkWinner();
 
             if(!gameOver){  
@@ -111,6 +115,7 @@ function machinmove(){
 if(empty_cell.length>0){
   let rendom=  Math.floor(Math.random()*empty_cell.length);
 empty_cell[rendom].textContent="O";
+empty_cell[rendom].classList.add("o");
 }
 
 
@@ -137,6 +142,10 @@ let restartBtn=document.getElementById("restart");
 restartBtn.addEventListener("click",()=>{
     cells.forEach((cell)=>{
         cell.textContent="";
+        cell.classList.remove("x");
+        cell.classList.remove("o");
+        cell.classList.remove("win");
+          
     });
     let popup=document.getElementById("popup");
     popup.style.display = "none";  

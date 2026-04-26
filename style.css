@@ -1,16 +1,28 @@
 
 body{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
     width: 100vw;
    background: linear-gradient(to bottom,  #E89A85,
         #EFB39B,
         #EFCF9C,
         #F4E3A3);
+    margin: 0;
+    padding: 0;
+    gap: 2em;
 }
+.title{
+    font-size: 3rem;
+    color: #6b4f4f;
 
+    text-shadow: 2px 2px 4px #e89a85;
+
+  letter-spacing: 2px;
+
+}
 .container{
   
 display: grid;
@@ -34,11 +46,26 @@ flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 3rem;
   color: #350a02;
   cursor: pointer;
+transition: 0.3s;
+font-weight: bold;
 
+}
 
+.cell.x{
+    /* color: #e89a85; */
+    color: #924a3d;
+}
+
+.cell.o{
+    color: #6b4f4f;
+}
+
+.cell:hover{
+    background-color: #EFB39B;
+    transform: scale(1.05);
 }
 
 .popup {
@@ -54,15 +81,26 @@ flex-direction: column;
     display: none;
 }
 .popup-content {
-    background-color: #fff;
+    background:linear-gradient(to bottom, #efb39b,#f4e3a3);
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 18px;
     text-align: center;
     width: 300px;
     height: 150px;
+    box-shadow: 0  12px 4px rgb(0,0,0,0.2);
+    animation: showPopup 0.4s ease;
+}
+@keyframes showpopup {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }to{
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 .start-screen{
-background-color: #ebebe9;
+background-color: #e8deb9;
 padding: 40px;
 display: flex;
 flex-direction: column;
@@ -93,11 +131,11 @@ box-shadow: 0 0 8px #efb39b;
 }
 
 #start-game{
-padding: 12px, 25px;
+padding: 10px 20px;
 font-size: 16px;
 border-radius: 10px;
-border: none;
-color: rgb(255, 253, 253);
+border: 1px solid #ea8063;
+color: rgb(200, 163, 163);
 cursor: pointer;
 transition:0.3s;
 
@@ -106,4 +144,42 @@ transition:0.3s;
 #start-game:hover{
     background-color: #efb39b;
     transform: scale(1.05);
+    color: #ffffff;
+}
+#winner-message{
+    font-size: 24px;
+    font-weight: bold;
+    color :#6b4f4f;
+    margine-bottom: 20px;
+}
+#restart{
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition:0.3s;
+    background-color: #e89a85;
+}
+#restart:hover{
+    background-color: #ffffff;
+    border: 1px solid #e89a85;
+    transform: scale(1.05);
+    color: #e89a85;
+    transition: 0.3s;
+}
+
+.win{
+    background-color: #b9e78e;
+color: #ffffff;
+box-shadow: 0 0 12px #e89a85;
+}
+
+.scoreboard{
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #6b4f4f;
+    display: flex;
+    gap: 20px;
 }

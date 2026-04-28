@@ -34,6 +34,8 @@ flex-direction: column;
 
 #gameboard{
    display: none;
+   width: 90vw;
+    max-width: 320px;
 }
 .cell{
     
@@ -219,10 +221,17 @@ box-shadow: 0 0 12px #e89a85;
     .start-screen {
         padding: 30px;
         font-size: 1.5rem;
+
     }
     .scoreboard {
-        font-size: 14px;
-        gap: 10px;
+        font-size: 10px;
+        gap: 5px;
+       
+    }
+    .score{
+        width: 60px;
+        padding: 5px 10px;
+        font-size: 12px;
     }
     #restart {
         padding: 10px 20px;
@@ -233,6 +242,23 @@ box-shadow: 0 0 12px #e89a85;
     #winner-message {
         font-size: 20px;
         margin-bottom: 10px;
+    }
+body{
+    gap: 1em;
+}
+}
+
+/* 📲 Tablet devices */
+@media (min-width: 601px) and (max-width: 900px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .cell {
+        width: 85px;
+        height: 85px;
+        font-size: 32px;
     }
 
 }

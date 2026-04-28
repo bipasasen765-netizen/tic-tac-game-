@@ -16,9 +16,9 @@ body{
 }
 .title{
     font-size: 3rem;
-    color: #6b4f4f;
-
-    text-shadow: 2px 2px 4px #e89a85;
+    color: #FFF0BE;
+ 
+    text-shadow: 2px 2px 4px #000000;
 
   letter-spacing: 2px;
 
@@ -178,8 +178,20 @@ box-shadow: 0 0 12px #e89a85;
 
 .scoreboard{
     margin-bottom: 15px;
-    font-size: 18px;
-    color: #6b4f4f;
-    display: flex;
+    font-size: 20px;
+    color: #4b2c2c;
+    display: none;
     gap: 20px;
+    justify-content: center;
+    font-weight: bold;
+
+
+}
+.score
+{
+    background-color:  #FFF0BE;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 8px #00000076;
 }

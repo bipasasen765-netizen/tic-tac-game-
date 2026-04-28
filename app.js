@@ -1,5 +1,28 @@
 
 let gameOver=false;
+//score
+let playerScore=0;
+let machineScore=0; 
+let drawScore=0;
+let playerscoretext=document.getElementById("player-score");
+let machinescoretext=document.getElementById("machine-score");
+let drawscoretext=document.getElementById("draw-score");    
+
+//test score ubdate for player
+function checkscoreplayer(){
+    playerScore++;
+    playerscoretext.textContent="player: " +  playerScore;
+}
+// score ubdate for machine
+function checkscoremachine(){
+    machineScore++;
+    machinescoretext.textContent="machine: " +  machineScore;
+}
+// score ubdate for draw
+function checkscoredraw(){
+    drawScore++;
+    drawscoretext.textContent="draw: " +  drawScore;
+}
 
 let startBtn =
     document.getElementById("start-game");
@@ -9,6 +32,7 @@ let startScreen =
 
 let gameBoard =
     document.getElementById("gameboard");
+    let scoreboard=document.getElementsByClassName("scoreboard")[0];
 
 startBtn.addEventListener("click", () => {
 
@@ -22,10 +46,11 @@ startBtn.addEventListener("click", () => {
         return;
 
     }
-
+//start banner🤪🤪🤪
     startScreen.style.display = "none";
 
     gameBoard.style.display = "grid";
+    scoreboard.style.display = "flex";
 
 });
 
@@ -59,6 +84,12 @@ let winnerFound = false;
             cells[pattern[2]].classList.add("win");
 
             showPopup(a);
+             if (a === "X") {
+        checkscoreplayer();
+    }
+    else if (a === "O") {
+        checkscoremachine();
+    }
             winnerFound = true;
             gameOver=true;
             return;
@@ -74,6 +105,7 @@ let winnerFound = false;
   });
   if (isDraw && !winnerFound) {
     showPopup("Draw");
+     checkscoredraw();
     gameOver = true;
   }
 
@@ -93,7 +125,7 @@ cells.forEach((cell)=>{
             cell.textContent="X";
             cell.classList.add("x");
             checkWinner();
-
+     
             if(!gameOver){  
 
                 machinmove();

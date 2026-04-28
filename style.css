@@ -150,7 +150,7 @@ transition:0.3s;
     font-size: 24px;
     font-weight: bold;
     color :#6b4f4f;
-    margine-bottom: 20px;
+    margin-bottom: 20px;
 }
 #restart{
     padding: 12px 25px;
@@ -194,4 +194,45 @@ box-shadow: 0 0 12px #e89a85;
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 0 5px 8px #00000076;
+}
+
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: repeat(3, 80px);
+        gap: 8px;
+
+    }
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    .title {
+        font-size: 2rem;
+    }
+    .popup-content {
+        width: 250px;
+        height: 120px;
+    
+    }
+    .start-screen {
+        padding: 30px;
+        font-size: 1.5rem;
+    }
+    .scoreboard {
+        font-size: 14px;
+        gap: 10px;
+    }
+    #restart {
+        padding: 10px 20px;
+        font-size: 14px;
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+    #winner-message {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
 }

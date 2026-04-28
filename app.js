@@ -136,6 +136,65 @@ cells.forEach((cell)=>{
 }
 })
 })
+//harder locic for machine move
+function tryWinMove() {
+
+    for (let pattern of winner) {
+
+        let a = cells[pattern[0]].textContent;
+        let b = cells[pattern[1]].textContent;
+        let c = cells[pattern[2]].textContent;
+
+        // O O _
+        if (a === "O" && b === "O" && c === "") {
+            return pattern[2];
+        }
+
+        // O _ O
+        if (a === "O" && b === "" && c === "O") {
+            return pattern[1];
+        }
+
+        // _ O O
+        if (a === "" && b === "O" && c === "O") {
+            return pattern[0];
+        }
+
+    }
+
+    return null;
+}
+//machine block movement
+function blockPlayerMove() {
+
+    for (let pattern of winner) {
+
+        let a = cells[pattern[0]].textContent;
+        let b = cells[pattern[1]].textContent;
+        let c = cells[pattern[2]].textContent;
+
+        // X X _
+        if (a === "X" && b === "X" && c === "") {
+            return pattern[2];
+        }
+
+        // X _ X
+        if (a === "X" && b === "" && c === "X") {
+            return pattern[1];
+        }
+
+        // _ X X
+        if (a === "" && b === "X" && c === "X") {
+            return pattern[0];
+        }
+
+    }
+
+    return null;
+}
+
+
+
 //machin move
 function machinmove(){
     let empty_cell=[];
@@ -144,6 +203,26 @@ function machinmove(){
             empty_cell.push(cell);
         }
     })
+    //machin win move
+    let winIndex = tryWinMove();
+
+if (winIndex !== null) {
+
+    cells[winIndex].textContent = "O";
+    cells[winIndex].classList.add("o");
+
+    return;
+}
+    //machich block movement
+    let blockIndex = blockPlayerMove();
+
+if (blockIndex !== null) {
+
+    cells[blockIndex].textContent = "O";
+    cells[blockIndex].classList.add("o");
+
+    return;
+}
 if(empty_cell.length>0){
   let rendom=  Math.floor(Math.random()*empty_cell.length);
 empty_cell[rendom].textContent="O";

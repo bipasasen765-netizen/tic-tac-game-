@@ -416,13 +416,13 @@ box-shadow: 0 0 20px #e89a85;
     }
     .scoreboard {
         font-size: 10px;
-        gap: 5px;
+        gap: 7px;
        
     }
     .score{
    
         padding: 5px 10px;
-        font-size: 14px;
+        font-size: 10px;
         white-space: nowrap;
     }
     #restart {

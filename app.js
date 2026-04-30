@@ -1,12 +1,41 @@
 
 let gameOver=false;
+//click sound😎
+let clickSound = new Audio("click-sound.mp3");
+//buton sound
+let buttonSound = new Audio("button_click.mp3");
+//win sound for user🎊
+let winSound = new Audio("win_sound.mp3");
+let machin_winsound = new Audio("machin_win_sound.mp3");
+let draw_sound = new Audio("draw_sound.mp3");
+
 //score
-let playerScore=0;
+let playerScore=9;
 let machineScore=0; 
 let drawScore=0;
+
+
+
 let playerscoretext=document.getElementById("player-score");
 let machinescoretext=document.getElementById("machine-score");
-let drawscoretext=document.getElementById("draw-score");    
+let drawscoretext=document.getElementById("draw-score");  
+// playerscoretext.textContent="player: " +  playerScore;
+// machinescoretext.textContent="machine: " +  machineScore;
+ //checking finish winner😎😎😎🎊
+ function checkfinishwinner(){
+    if(playerScore===10){
+        showFinalPopup();
+ }}
+// final popup
+function showFinalPopup() {
+let normalPopup= document.getElementById("popup");
+normalPopup.style.display="none";
+    let finalPopup =
+        document.getElementById("finalPopup");
+
+    finalPopup.style.display = "flex";
+
+}
 
 //test score ubdate for player
 function checkscoreplayer(){
@@ -35,7 +64,7 @@ let gameBoard =
     let scoreboard=document.getElementsByClassName("scoreboard")[0];
 
 startBtn.addEventListener("click", () => {
-
+    buttonSound.play();
     let playerName =
         document.getElementById("player-name").value;
 
@@ -46,6 +75,8 @@ startBtn.addEventListener("click", () => {
         return;
 
     }
+localStorage.setItem("playerName", playerName);
+
 //start banner🤪🤪🤪
     startScreen.style.display = "none";
 
@@ -86,9 +117,15 @@ let winnerFound = false;
             showPopup(a);
              if (a === "X") {
         checkscoreplayer();
+        checkfinishwinner();
+      
     }
     else if (a === "O") {
+     
         checkscoremachine();
+        if(machineScore===10){
+            showlosePopup();
+        }
     }
             winnerFound = true;
             gameOver=true;
@@ -110,8 +147,43 @@ let winnerFound = false;
   }
 
 }
+//USER LOSE FINAL POPUP
+function showlosePopup(){
+document.getElementById("popup").style.display="none";
+document.getElementById("losePopup").style.display="flex";
 
+}
 
+function restartFullGame() {
+
+    // Hide popups
+    document.getElementById("losePopup").style.display = "none";
+    document.getElementById("finalPopup").style.display = "none";
+
+    // Reset scores
+    playerScore = 0;
+    machineScore = 0;
+    drawScore = 0;
+
+    // ⭐ Correct variable names
+    playerscoretext.textContent = "player: " + playerScore;
+    machinescoretext.textContent = "machine: " + machineScore;
+    drawscoretext.textContent = "draw: " + drawScore;
+
+    // Clear board
+    cells.forEach(cell => {
+
+        cell.textContent = "";
+        cell.classList.remove("x");
+        cell.classList.remove("o");
+        cell.classList.remove("win");
+
+    });
+
+    // Restart game
+    gameOver = false;
+
+}
 
 
 
@@ -119,7 +191,7 @@ let cells=document.querySelectorAll('.cell');
 
 cells.forEach((cell)=>{
     cell.addEventListener("click",()=>{
-
+clickSound.play();
         if(cell.textContent === "" && !gameOver){
 
             cell.textContent="X";
@@ -197,13 +269,14 @@ function blockPlayerMove() {
 
 //machin move
 function machinmove(){
+    
     let empty_cell=[];
     cells.forEach((cell)=>{
         if(cell.textContent===""){
             empty_cell.push(cell);
         }
     })
-    //machin win move
+//     //machin win move
     let winIndex = tryWinMove();
 
 if (winIndex !== null) {
@@ -234,15 +307,19 @@ empty_cell[rendom].classList.add("o");
 
 //show popup
 function showPopup(winner){
+   
     let popup=document.getElementById("popup");
     let text=document.getElementById("winner-message");
     let playerName=document.getElementById("player-name").value;
     if(winner==="X"){
+         winSound.play();
         text.textContent=`${playerName} is the winner!🎉🎊`;
     } else if(winner==="O"){
+         machin_winsound.play();
         text.textContent=`Machine is the winner 🤖!`;
     }  
     else if(winner==="Draw"){
+        draw_sound.play();
         text.textContent=`It's a draw!🤝`;
     } 
     popup.style.display = "flex";
@@ -251,6 +328,7 @@ function showPopup(winner){
 
 let restartBtn=document.getElementById("restart");
 restartBtn.addEventListener("click",()=>{
+    buttonSound.play();
     cells.forEach((cell)=>{
         cell.textContent="";
         cell.classList.remove("x");
@@ -262,3 +340,23 @@ restartBtn.addEventListener("click",()=>{
     popup.style.display = "none";  
     gameOver=false;     
 });
+//sound add restart button and see my massege button 
+let messageBtn =
+document.getElementById("message-btn");
+
+if(messageBtn){
+
+messageBtn.addEventListener("click",()=>{
+
+    clickSound.play();
+
+    setTimeout(()=>{
+
+        window.location.href="message.html";
+
+    },300);
+
+});
+
+}
+

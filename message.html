@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="messege_title">Congratulations!</h1>
+    <p>You have won 10 times! You are the ultimate champion of Tic Tac Toe!</p>
+    <script>
+        let plyerName = localStorage.getItem("playerName") || "Player";
+        document.querySelector(".messege_title").textContent = `Congratulations, ${plyerName}!`;
+    </script>
+</body>
+</html>

@@ -415,16 +415,31 @@ box-shadow: 0 0 20px #e89a85;
 
     }
     .scoreboard {
-        font-size: 10px;
-        gap: 7px;
-       
-    }
-    .score{
-   
-        padding: 5px 10px;
-        font-size: 10px;
-        white-space: nowrap;
-    }
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 6px;
+
+    flex-wrap: nowrap;   
+
+}
+    .score {
+
+    padding: 6px 8px;
+
+    font-size: 12px;
+
+    white-space: nowrap;   /* ⭐ keep in one line */
+
+    min-width: 85px;       /* ⭐ very important */
+
+    text-align: center;
+
+}
     #restart {
         padding: 10px 20px;
         font-size: 14px;

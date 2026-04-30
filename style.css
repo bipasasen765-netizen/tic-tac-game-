@@ -433,9 +433,9 @@ box-shadow: 0 0 20px #e89a85;
 
     font-size: 12px;
 
-    white-space: nowrap;   /* ⭐ keep in one line */
+    white-space: nowrap;  
 
-    min-width: 85px;       /* ⭐ very important */
+    min-width: 85px;       
 
     text-align: center;
 

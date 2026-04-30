@@ -10,7 +10,7 @@ let machin_winsound = new Audio("machin_win_sound.mp3");
 let draw_sound = new Audio("draw_sound.mp3");
 
 //score
-let playerScore=9;
+let playerScore=0;
 let machineScore=0; 
 let drawScore=0;
 

@@ -8,10 +8,25 @@ let buttonSound = new Audio("button_click.mp3");
 let winSound = new Audio("win_sound.mp3");
 let machin_winsound = new Audio("machin_win_sound.mp3");
 let draw_sound = new Audio("draw_sound.mp3");
+//ADING BACKGROUND MUSIC
+let finalSong=[
+new Audio("sad-music/SONG1.mp3"),
+new Audio("sad-music/SONG2.mp3"),
+new Audio("sad-music/SONG3.mp3"),
+new Audio("sad-music/SONG4.mp3")
+];
+function playRandomFinalMusic(){
+    let randomIndex=Math.floor(Math.random()*finalSong.length);
+    let selectSong=finalSong[randomIndex];
+    selectSong.play();
+}
+
+
+
 
 //score
 let playerScore=0;
-let machineScore=0; 
+let machineScore=9; 
 let drawScore=0;
 
 
@@ -20,7 +35,7 @@ let playerscoretext=document.getElementById("player-score");
 let machinescoretext=document.getElementById("machine-score");
 let drawscoretext=document.getElementById("draw-score");  
 // playerscoretext.textContent="player: " +  playerScore;
-// machinescoretext.textContent="machine: " +  machineScore;
+machinescoretext.textContent="machine: " +  machineScore;
  //checking finish winner😎😎😎🎊
  function checkfinishwinner(){
     if(playerScore===10){
@@ -114,10 +129,11 @@ let winnerFound = false;
             cells[pattern[1]].classList.add("win");
             cells[pattern[2]].classList.add("win");
 
-            showPopup(a);
-             if (a === "X") {
+            
+               if (a === "X") {
         checkscoreplayer();
         checkfinishwinner();
+        showPopup(a);
       
     }
     else if (a === "O") {
@@ -125,7 +141,9 @@ let winnerFound = false;
         checkscoremachine();
         if(machineScore===10){
             showlosePopup();
+            return;
         }
+            showPopup(a);
     }
             winnerFound = true;
             gameOver=true;
@@ -140,18 +158,18 @@ let winnerFound = false;
       isDraw = false;
     }
   });
-  if (isDraw && !winnerFound) {
+  if (isDraw && !winnerFound && !gameOver) {
     showPopup("Draw");
      checkscoredraw();
     gameOver = true;
   }
 
 }
-//USER LOSE FINAL POPUP
+//USER LOSE FINAL POPUP 🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳
 function showlosePopup(){
 document.getElementById("popup").style.display="none";
 document.getElementById("losePopup").style.display="flex";
-
+playRandomFinalMusic();
 }
 
 function restartFullGame() {
@@ -315,8 +333,12 @@ function showPopup(winner){
          winSound.play();
         text.textContent=`${playerName} is the winner!🎉🎊`;
     } else if(winner==="O"){
-         machin_winsound.play();
-        text.textContent=`Machine is the winner 🤖!`;
+        if(machineScore< 10){
+  machin_winsound.play();
+        }
+       
+text.textContent=`Machine is the winner 🤖!`;
+
     }  
     else if(winner==="Draw"){
         draw_sound.play();
@@ -359,4 +381,10 @@ messageBtn.addEventListener("click",()=>{
 });
 
 }
+
+let restart_button=document.getElementsByClassName("restart-btn")[0];
+
+restart_button.addEventListener("click",()=>{
+    clickSound.play();
+})
 

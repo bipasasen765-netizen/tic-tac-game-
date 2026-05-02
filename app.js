@@ -20,7 +20,7 @@ loseFinalMs.loop=true;
 
 //score
 let playerScore = 0;
-let machineScore = 9;
+let machineScore = 0;
 let drawScore = 0;
 
 
@@ -29,7 +29,7 @@ let playerscoretext = document.getElementById("player-score");
 let machinescoretext = document.getElementById("machine-score");
 let drawscoretext = document.getElementById("draw-score");
 // playerscoretext.textContent = "player: " + playerScore;
-machinescoretext.textContent="machine: " +  machineScore;
+// machinescoretext.textContent="machine: " +  machineScore;
 //checking finish winner😎😎😎🎊
 function checkfinishwinner() {
     if (playerScore === 10) {

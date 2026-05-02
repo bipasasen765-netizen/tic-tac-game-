@@ -8,19 +8,19 @@ let buttonSound = new Audio("button_click.mp3");
 let winSound = new Audio("win_sound.mp3");
 let machin_winsound = new Audio("machin_win_sound.mp3");
 let draw_sound = new Audio("draw_sound.mp3");
-let finalMusic = new Audio("/final_music/finalwin.mp3");
+let finalMusic = new Audio("final_music/finalwin.mp3");
     finalMusic.loop=true;
 //lose vedio
 let loseVideo = document.querySelector(".lose-video");
 loseVideo.muted = true;
 //lose final music
-let loseFinalMs=new Audio("/final_music/loseFinalMS.mp3");
+let loseFinalMs=new Audio("final_music/loseFinalMS.mp3");
 loseFinalMs.loop=true;
 
 
 //score
 let playerScore = 0;
-let machineScore = 0;
+let machineScore = 9;
 let drawScore = 0;
 
 
@@ -29,7 +29,7 @@ let playerscoretext = document.getElementById("player-score");
 let machinescoretext = document.getElementById("machine-score");
 let drawscoretext = document.getElementById("draw-score");
 // playerscoretext.textContent = "player: " + playerScore;
-// machinescoretext.textContent="machine: " +  machineScore;
+machinescoretext.textContent="machine: " +  machineScore;
 //checking finish winner😎😎😎🎊
 function checkfinishwinner() {
     if (playerScore === 10) {

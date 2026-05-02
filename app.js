@@ -12,6 +12,7 @@ let finalMusic = new Audio("/final_music/finalwin.mp3");
     finalMusic.loop=true;
 //lose vedio
 let loseVideo = document.querySelector(".lose-video");
+loseVideo.muted = true;
 //lose final music
 let loseFinalMs=new Audio("/final_music/loseFinalMS.mp3");
 loseFinalMs.loop=true;
@@ -166,14 +167,16 @@ function checkWinner() {
     }
 
 }
+//    
 //USER LOSE FINAL POPUP 🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳
 function showlosePopup() {
+    loseVideo.currentTime = 0;
+    loseVideo.play();
     document.getElementById("popup").style.display = "none";
     document.getElementById("losePopup").style.display = "flex";
+    loseFinalMs.pause();
+      loseFinalMs.currentTime = 0;
     loseFinalMs.play();
-    loseVideo.currentTime = 0;
-    loseVideo.muted = true;
-    loseVideo.play();
     let card = document.querySelector(".lose-popup-content");
     card.classList.remove("shaking");
     setTimeout(() => {
@@ -183,8 +186,9 @@ function showlosePopup() {
 }
 
 function restartFullGame() {
-    // STOP VIDEO SOUND
-    loseVideo.pause();
+    
+    loseFinalMs.pause();
+    loseFinalMs.currentTime = 0;
 
     // RESET VIDEO
     loseVideo.currentTime = 0;

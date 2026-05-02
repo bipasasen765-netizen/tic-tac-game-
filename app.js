@@ -1,5 +1,5 @@
 
-let gameOver=false;
+let gameOver = false;
 //click sound😎
 let clickSound = new Audio("click-sound.mp3");
 //buton sound
@@ -8,64 +8,65 @@ let buttonSound = new Audio("button_click.mp3");
 let winSound = new Audio("win_sound.mp3");
 let machin_winsound = new Audio("machin_win_sound.mp3");
 let draw_sound = new Audio("draw_sound.mp3");
-//ADING BACKGROUND MUSIC
-let finalSong=[
-new Audio("sad-music/SONG1.mp3"),
-new Audio("sad-music/SONG2.mp3"),
-new Audio("sad-music/SONG3.mp3"),
-new Audio("sad-music/SONG4.mp3")
-];
-function playRandomFinalMusic(){
-    let randomIndex=Math.floor(Math.random()*finalSong.length);
-    let selectSong=finalSong[randomIndex];
-    selectSong.play();
-}
-
-
+let finalMusic = new Audio("/final_music/finalwin.mp3");
+    finalMusic.loop=true;
+//lose vedio
+let loseVideo = document.querySelector(".lose-video");
+//lose final music
+let loseFinalMs=new Audio("/final_music/loseFinalMS.mp3");
+loseFinalMs.loop=true;
 
 
 //score
-let playerScore=0;
-let machineScore=9; 
-let drawScore=0;
+let playerScore = 0;
+let machineScore = 0;
+let drawScore = 0;
 
 
 
-let playerscoretext=document.getElementById("player-score");
-let machinescoretext=document.getElementById("machine-score");
-let drawscoretext=document.getElementById("draw-score");  
-// playerscoretext.textContent="player: " +  playerScore;
-machinescoretext.textContent="machine: " +  machineScore;
- //checking finish winner😎😎😎🎊
- function checkfinishwinner(){
-    if(playerScore===10){
+let playerscoretext = document.getElementById("player-score");
+let machinescoretext = document.getElementById("machine-score");
+let drawscoretext = document.getElementById("draw-score");
+// playerscoretext.textContent = "player: " + playerScore;
+// machinescoretext.textContent="machine: " +  machineScore;
+//checking finish winner😎😎😎🎊
+function checkfinishwinner() {
+    if (playerScore === 10) {
         showFinalPopup();
- }}
+    }
+}
 // final popup
 function showFinalPopup() {
-let normalPopup= document.getElementById("popup");
-normalPopup.style.display="none";
+    let normalPopup = document.getElementById("popup");
+    normalPopup.style.display = "none";
     let finalPopup =
         document.getElementById("finalPopup");
 
     finalPopup.style.display = "flex";
 
+    let winnerVideo = document.querySelector(".winner-video");
+winnerVideo.play();
+winnerVideo.muted=true;
+        finalMusic.currentTime=0;
+    finalMusic.play();
+    
+ 
 }
 
 //test score ubdate for player
-function checkscoreplayer(){
+function checkscoreplayer() {
     playerScore++;
-    playerscoretext.textContent="player: " +  playerScore;
+    playerscoretext.textContent = "player: " + playerScore;
 }
 // score ubdate for machine
-function checkscoremachine(){
+function checkscoremachine() {
     machineScore++;
-    machinescoretext.textContent="machine: " +  machineScore;
+    machinescoretext.textContent = "machine: " + machineScore;
 }
 // score ubdate for draw
-function checkscoredraw(){
+function checkscoredraw() {
     drawScore++;
-    drawscoretext.textContent="draw: " +  drawScore;
+    drawscoretext.textContent = "draw: " + drawScore;
 }
 
 let startBtn =
@@ -76,7 +77,7 @@ let startScreen =
 
 let gameBoard =
     document.getElementById("gameboard");
-    let scoreboard=document.getElementsByClassName("scoreboard")[0];
+let scoreboard = document.getElementsByClassName("scoreboard")[0];
 
 startBtn.addEventListener("click", () => {
     buttonSound.play();
@@ -90,9 +91,9 @@ startBtn.addEventListener("click", () => {
         return;
 
     }
-localStorage.setItem("playerName", playerName);
+    localStorage.setItem("playerName", playerName);
 
-//start banner🤪🤪🤪
+    //start banner🤪🤪🤪
     startScreen.style.display = "none";
 
     gameBoard.style.display = "grid";
@@ -100,21 +101,21 @@ localStorage.setItem("playerName", playerName);
 
 });
 
-let winner=[
-[0,1,2],
-[3,4,5],
-[6,7,8],
+let winner = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
 
-[0,3,6],
-[1,4,7],
-[2,5,8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
 
-[0,4,8],
-[2,4,6]
+    [0, 4, 8],
+    [2, 4, 6]
 ];
 // <!-- checking --!>
 function checkWinner() {
-let winnerFound = false;
+    let winnerFound = false;
     for (let pattern of winner) {
 
         let a = cells[pattern[0]].textContent;
@@ -129,50 +130,64 @@ let winnerFound = false;
             cells[pattern[1]].classList.add("win");
             cells[pattern[2]].classList.add("win");
 
-            
-               if (a === "X") {
-        checkscoreplayer();
-        checkfinishwinner();
-        showPopup(a);
-      
-    }
-    else if (a === "O") {
-     
-        checkscoremachine();
-        if(machineScore===10){
-            showlosePopup();
-            return;
-        }
-            showPopup(a);
-    }
+
+            if (a === "X") {
+                checkscoreplayer();
+                checkfinishwinner();
+                showPopup(a);
+
+            }
+            else if (a === "O") {
+
+                checkscoremachine();
+                if (machineScore === 10) {
+                    showlosePopup();
+                    return;
+                }
+                showPopup(a);
+            }
             winnerFound = true;
-            gameOver=true;
+            gameOver = true;
             return;
         }
 
     }
-  //draw condition
-  let isDraw = true;
-  cells.forEach((cell) => {
-    if (cell.textContent === "") {
-      isDraw = false;
+    //draw condition
+    let isDraw = true;
+    cells.forEach((cell) => {
+        if (cell.textContent === "") {
+            isDraw = false;
+        }
+    });
+    if (isDraw && !winnerFound && !gameOver) {
+        showPopup("Draw");
+        checkscoredraw();
+        gameOver = true;
     }
-  });
-  if (isDraw && !winnerFound && !gameOver) {
-    showPopup("Draw");
-     checkscoredraw();
-    gameOver = true;
-  }
 
 }
 //USER LOSE FINAL POPUP 🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳🍳
-function showlosePopup(){
-document.getElementById("popup").style.display="none";
-document.getElementById("losePopup").style.display="flex";
-playRandomFinalMusic();
+function showlosePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("losePopup").style.display = "flex";
+    loseFinalMs.play();
+    loseVideo.currentTime = 0;
+    loseVideo.muted = true;
+    loseVideo.play();
+    let card = document.querySelector(".lose-popup-content");
+    card.classList.remove("shaking");
+    setTimeout(() => {
+        card.classList.add("shaking");
+    }, 10);
+
 }
 
 function restartFullGame() {
+    // STOP VIDEO SOUND
+    loseVideo.pause();
+
+    // RESET VIDEO
+    loseVideo.currentTime = 0;
 
     // Hide popups
     document.getElementById("losePopup").style.display = "none";
@@ -205,26 +220,26 @@ function restartFullGame() {
 
 
 
-let cells=document.querySelectorAll('.cell');
+let cells = document.querySelectorAll('.cell');
 
-cells.forEach((cell)=>{
-    cell.addEventListener("click",()=>{
-clickSound.play();
-        if(cell.textContent === "" && !gameOver){
+cells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+        clickSound.play();
+        if (cell.textContent === "" && !gameOver) {
 
-            cell.textContent="X";
+            cell.textContent = "X";
             cell.classList.add("x");
             checkWinner();
-     
-            if(!gameOver){  
+
+            if (!gameOver) {
 
                 machinmove();
 
                 checkWinner();
-}
+            }
 
-}
-})
+        }
+    })
 })
 //harder locic for machine move
 function tryWinMove() {
@@ -286,105 +301,105 @@ function blockPlayerMove() {
 
 
 //machin move
-function machinmove(){
-    
-    let empty_cell=[];
-    cells.forEach((cell)=>{
-        if(cell.textContent===""){
+function machinmove() {
+
+    let empty_cell = [];
+    cells.forEach((cell) => {
+        if (cell.textContent === "") {
             empty_cell.push(cell);
         }
     })
-//     //machin win move
-    let winIndex = tryWinMove();
+    //     //machin win move
+        let winIndex = tryWinMove();
 
-if (winIndex !== null) {
+    if (winIndex !== null) {
 
-    cells[winIndex].textContent = "O";
-    cells[winIndex].classList.add("o");
+        cells[winIndex].textContent = "O";
+        cells[winIndex].classList.add("o");
 
-    return;
-}
-    //machich block movement
-    let blockIndex = blockPlayerMove();
+        return;
+    }
+        //machich block movement
+        let blockIndex = blockPlayerMove();
 
-if (blockIndex !== null) {
+    if (blockIndex !== null) {
 
-    cells[blockIndex].textContent = "O";
-    cells[blockIndex].classList.add("o");
+        cells[blockIndex].textContent = "O";
+        cells[blockIndex].classList.add("o");
 
-    return;
-}
-if(empty_cell.length>0){
-  let rendom=  Math.floor(Math.random()*empty_cell.length);
-empty_cell[rendom].textContent="O";
-empty_cell[rendom].classList.add("o");
-}
-
-
+        return;
+    }
+    if (empty_cell.length > 0) {
+        let rendom = Math.floor(Math.random() * empty_cell.length);
+        empty_cell[rendom].textContent = "O";
+        empty_cell[rendom].classList.add("o");
+    }
 }
 
 //show popup
-function showPopup(winner){
-   
-    let popup=document.getElementById("popup");
-    let text=document.getElementById("winner-message");
-    let playerName=document.getElementById("player-name").value;
-    if(winner==="X"){
-         winSound.play();
-        text.textContent=`${playerName} is the winner!🎉🎊`;
-    } else if(winner==="O"){
-        if(machineScore< 10){
-  machin_winsound.play();
-        }
-       
-text.textContent=`Machine is the winner 🤖!`;
+function showPopup(winner) {
 
-    }  
-    else if(winner==="Draw"){
+    let popup = document.getElementById("popup");
+    let text = document.getElementById("winner-message");
+    let playerName = document.getElementById("player-name").value;
+    if (winner === "X") {
+        if (playerScore < 10) {
+            winSound.play();
+        }
+        text.textContent = `${playerName} is the winner!🎉🎊`;
+    } else if (winner === "O") {
+        if (machineScore < 10) {
+            machin_winsound.play();
+        }
+
+        text.textContent = `Machine is the winner 🤖!`;
+
+    }
+    else if (winner === "Draw") {
         draw_sound.play();
-        text.textContent=`It's a draw!🤝`;
-    } 
+        text.textContent = `It's a draw!🤝`;
+    }
     popup.style.display = "flex";
 
 }
 
-let restartBtn=document.getElementById("restart");
-restartBtn.addEventListener("click",()=>{
+let restartBtn = document.getElementById("restart");
+restartBtn.addEventListener("click", () => {
     buttonSound.play();
-    cells.forEach((cell)=>{
-        cell.textContent="";
+    cells.forEach((cell) => {
+
+        cell.textContent = "";
         cell.classList.remove("x");
         cell.classList.remove("o");
         cell.classList.remove("win");
-          
     });
-    let popup=document.getElementById("popup");
-    popup.style.display = "none";  
-    gameOver=false;     
+    let popup = document.getElementById("popup");
+    popup.style.display = "none";
+    gameOver = false;
 });
 //sound add restart button and see my massege button 
 let messageBtn =
-document.getElementById("message-btn");
+    document.getElementById("message-btn");
 
-if(messageBtn){
+if (messageBtn) {
 
-messageBtn.addEventListener("click",()=>{
+    messageBtn.addEventListener("click", () => {
 
-    clickSound.play();
+        clickSound.play();
 
-    setTimeout(()=>{
+        setTimeout(() => {
 
-        window.location.href="message.html";
+            window.location.href = "message.html";
 
-    },300);
+        }, 300);
 
-});
+    });
 
 }
 
-let restart_button=document.getElementsByClassName("restart-btn")[0];
+let restart_button = document.getElementsByClassName("restart-btn")[0];
 
-restart_button.addEventListener("click",()=>{
+restart_button.addEventListener("click", () => {
     clickSound.play();
 })
 

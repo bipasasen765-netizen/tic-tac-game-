@@ -197,9 +197,9 @@ box-shadow: 0 0 12px #e89a85;
     box-shadow: 0 5px 8px #00000076;
 }
 
-/* ⭐ Final Popup Background */
+/* ⭐ Final Popup Background 🍳🍳🍳🍳🍳🍳🍳🍳*/
 
-.final-popup {
+.final-popup { 
 
     position: fixed;
 
@@ -215,6 +215,40 @@ box-shadow: 0 0 12px #e89a85;
 
     justify-content: center;
     align-items: center;
+    border: 2px solid #F4B6B6;
+
+}
+.final-popup-content {
+
+    background:rgba(240, 171, 171, 0.26);
+    backdrop-filter: blur(17px);
+border: 1px solid #e89a85;
+box-shadow: 0 0 20px #3131313a;
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+
+
+}
+.winner-video{
+    width: 100%;
+    max-width: 300px;
+
+    height: auto;
+
+    margin: 12px 0;
+
+    border-radius: 16px;
+
+    object-fit: cover;
+
+    border: 1px solid rgba(255, 199, 199, 0.4);
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.3);
 
 }
 .message-btn {
@@ -227,8 +261,7 @@ box-shadow: 0 0 12px #e89a85;
 
     font-weight: bold;
 
-
-    border: 2px solid #99535348;
+border: 2px solid #F4B6B6;
  border-radius: 16px;
     background: transparent;
 
@@ -255,10 +288,12 @@ box-shadow: 0 0 12px #e89a85;
     height: 100%;
      
     background: linear-gradient(
-        90deg,
-        #FF9A86,
-       #FFF0BE
-    );
+  135deg,
+  #F4B6B6,
+  #F6C1A6
+);
+
+
 
     transition: width 0.4s ease;
 
@@ -273,24 +308,10 @@ box-shadow: 0 0 12px #e89a85;
 
 }
 .message-btn:hover{
-    color: #000000;
+   color: #fffefd;
 }
 
-.final-popup-content {
 
-    background:rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-border: 1px solid #e89a85;
-box-shadow: 0 0 20px #e89a85;
-    padding: 25px;
-
-    border-radius: 12px;
-
-    text-align: center;
-
-    animation: finalPop 0.5s ease;
-
-}
 /* ⭐ game over css(lose-popup) */
 .lose-popup {
 
@@ -302,11 +323,7 @@ box-shadow: 0 0 20px #e89a85;
     width: 100%;
     height: 100%;
 
- background-image: url("rain-bg.jpg");
-
-    background-size: cover;
-
-    background-position: center;
+background-color: transparent;
 
     display: none;
 
@@ -315,56 +332,78 @@ box-shadow: 0 0 20px #e89a85;
 
 
 }
-.lose-popup::before {
+/*the lose pop up*/
+.lose-popup-content{
+width: 300px;
+padding: 25px;
+background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(12px);
+border:1px solid rgba(255, 255, 255, 0.2);
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+text-align: center;
+border-radius: 16px;
+animation: popupscale 0.4s ease;
+z-index: 10;
+position: relative;
 
-    content: "";
+}
+.shaking{
 
-    position: absolute;
+    animation: hammerShake 0.5s ease;
 
-    top: 0;
-    left: 0;
+}
+@keyframes hammerShake {
 
+    0%   { transform: translate(0, 0); }
+
+    20%  { transform: translate(-6px, 0); }
+
+    40%  { transform: translate(6px, 0); }
+
+    60%  { transform: translate(-4px, 0); }
+
+    80%  { transform: translate(4px, 0); }
+
+    100% { transform: translate(0, 0); }
+
+}
+
+@keyframes popupscale{
+from{
+    transform: scale(0.7);
+    opacity: 0;
+}to{
+    transform: scale(1);
+    opacity: 1;
+}
+
+}
+/* gif */
+.lose-video{
     width: 100%;
-    height: 100%;
-
-    background: rgba(0, 0, 0, 0.644);
-
-}
-.lose-popup-content {
-
-    position: relative;
-
-    z-index: 2;
-
-   
-
-    background: rgba(255,255,255,0.15);
-
-    backdrop-filter: blur(10px);
-
-    border: 1px solid rgba(255,255,255,0.3);
-
-    padding: 30px;
-
-    border-radius: 18px;
-
-    text-align: center;
-
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-
-    color: #ffffff;
-
+    max-width: 300px;
+  height: auto;
+    margin: 12px 0;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    border: 2px solid #da9292a6;
+transform: translateZ(0);
+    image-rendering: auto;
 }
 
 
+.lose-popup-content h2{
+    margin-top: 1px;
 
+}
 
 .restart-btn{
     position: relative;
     padding: 12px 25px;
     font-size: 16px;
     font-weight: bold;
-    border: 2px solid #da9292;
+  border: 2px solid #F4B6B6;
     border-radius: 25px;
     background: transparent;
     color: #ffffff;
@@ -385,10 +424,10 @@ box-shadow: 0 0 20px #e89a85;
     height: 100%;
 
     background: linear-gradient(
-        90deg,
-        #bc8171,
-        #cea4a4
-    );
+  135deg,
+  #F4B6B6,
+  #F6C1A6
+);
 
     transition: width 0.5s ease;
 
@@ -401,7 +440,7 @@ box-shadow: 0 0 20px #e89a85;
 
 }
 .restart-btn:hover{
-    color: #000000;
+    color: #E38B8B;
 }
 
 @media (max-width: 600px) {
